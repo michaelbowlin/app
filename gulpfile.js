@@ -11,8 +11,8 @@ var gulp = require('gulp'),
 // Source paths
 var scssDir = 'scss/',
 	srcDir = 'docs/',
-	scssSrc = scssDir + 'hybridapp.css',
-	cssDest = srcDir + 'docs/assets/css/';
+	scssSrc = scssDir + 'hybridapp.scss',
+	cssDest = srcDir + 'assets/css/';
 
 // Javascript files to be concatenated    
 
@@ -76,7 +76,7 @@ gulp.task('csslint', function(){
 // Watch Task
 gulp.task('watch', function(){
 	var server = plugins.livereload();
-	gulp.watch([scssDir + '**/*.scss', scssDir + '**/**/*.scss']).on('change',function(file){
+	gulp.watch(['hybridapp.scss',scssDir + '**/*.scss', scssDir + '**/**/*.scss']).on('change',function(file){
 		gulp.start('css', function(){
 			setTimeout(function(){
 				server.changed(file.path);
