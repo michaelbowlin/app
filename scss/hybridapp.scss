@@ -2,24 +2,14 @@ $color-1: #55bcdf;
 $color-trim: #ccfe04;
 $color-greyblue: #30333d;
 body {
-  background:#666;
-  padding: 30px 0px;
-  background: url(http://web5280.com/wp-content/themes/Web5280_Hybrid_1.0/images/bg_whitewood.jpg);
-  /*box-shadow:00px 00px 200px 100px #333 inset;*/
-  background:#fff;
-  height:3000px;
-  min-width:100%;
   margin:0;
-  padding:115px 0 0 0;
-  
-
+  padding:0;
   
   h1 {
     font-family: 'PT Sans Narrow', sans-serif;
     font-size:2.2em;
     color:#999;
     margin:5px 0 0 20px;
-
 
     span {
       color:$color-1;
@@ -58,26 +48,9 @@ body {
     color:#fff;
     
   }
-
-  
-  .iphone-img {
-    position:absolute;
-    top:0;
-    left:50%;
-    margin-left:-184px;
-    z-index:-1;
-    background:url('http://michaelbowlin.com/images/iphone.png') no-repeat 50%;
-    height:800px;
-    width:370px;
-  }
   
   .phone {
-    height:568px;
-    width:320px;
     background:whitesmoke;
-/*    background:url(http://www.michaelbowlin.com/images/geo-bg-green-01.jpg) no-repeat;*/
-          /*background:url(http://www.michaelbowlin.com/images/geo-bg-blue-01.jpg) no-repeat;*/
-    background:url(http://www.michaelbowlin.com/images/geo-bg-green-01.jpg) 50% -30%;
     background-size:30%;
     background:$color-1;
     margin:0 auto;
@@ -90,7 +63,7 @@ body {
       #content {
         position:relative;
         height:488px;
-        width:320px;
+        width:100%;
         float:left;   
         
            .frame {
@@ -105,15 +78,12 @@ body {
          .page {
                      
           height:488px;
-          width:320px;
+          width:100%;
           position:absolute;
           z-index:1;
           background:#ccc;
           background:$color-1;
           background:#444;
-          /*box-shadow:0 78px 2px 2px rgba(0,0,0,.2) inset;*/
-
-
            
            #scroller {
               position: absolute;
@@ -163,7 +133,7 @@ body {
               z-index: 2;
               top: 0;
               left: 0;
-              width: 100%;
+              min-width: 100%;
               height: 45px;
               line-height: 45px;
               background: #CD235C;
@@ -183,14 +153,8 @@ body {
               height: 48px;
               background: #444;
               padding: 0;
-              
-
-              
 
             }
- 
-
-
            }
          }
           
@@ -201,7 +165,11 @@ body {
   footer {
     margin:0;
     padding:0;
-    position:relative;
+    position: absolute;
+    bottom:0;
+    height:100px;
+    width:100%;
+    background:red;
     z-index:9999;
     
     nav {
@@ -240,8 +208,6 @@ body {
     bottom: -100%;
 
 }  
- 
-  
 
 /* 
 *
@@ -306,18 +272,6 @@ body {
 
 
 
-
-
-
-
-
-
-
- 
-
-
-
-
 /*
 *
 *
@@ -365,33 +319,6 @@ body {
 
 
 }// end screen-one
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* 

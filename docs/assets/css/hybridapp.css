@@ -1,15 +1,7 @@
 body
 {
-    min-width: 100%;
-    height: 3000px;
     margin: 0;
-    padding: 30px 0;
-    padding: 115px 0 0 0;
-
-    background: #666;
-    background: url(http://web5280.com/wp-content/themes/Web5280_Hybrid_1.0/images/bg_whitewood.jpg);
-    /*box-shadow:00px 00px 200px 100px #333 inset;*/
-    background: #fff;
+    padding: 0;
     /* logo */
 }
 body h1
@@ -64,31 +56,13 @@ body .sub-nav
     color: #fff; 
     background: rgba(255, 255, 255, .5);
 }
-body .iphone-img
-{
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 50%;
-
-    width: 370px; 
-    height: 800px;
-    margin-left: -184px;
-
-    background: url('http://michaelbowlin.com/images/iphone.png') no-repeat 50%;
-}
 body .phone
 {
     overflow: hidden; 
 
-    width: 320px;
-    height: 568px;
     margin: 0 auto;
 
     background: whitesmoke;
-    /*    background:url(http://www.michaelbowlin.com/images/geo-bg-green-01.jpg) no-repeat;*/
-    /*background:url(http://www.michaelbowlin.com/images/geo-bg-blue-01.jpg) no-repeat;*/
-    background: url(http://www.michaelbowlin.com/images/geo-bg-green-01.jpg) 50% -30%;
     background: #55bcdf;
     background-size: 30%;
 }
@@ -98,7 +72,7 @@ body .phone #content
 
     float: left; 
 
-    width: 320px;
+    width: 100%;
     height: 488px;
 }
 body .phone #content .frame
@@ -115,13 +89,12 @@ body .phone #content .page
     position: absolute;
     z-index: 1;
 
-    width: 320px;
+    width: 100%;
     height: 488px;
 
     background: #ccc;
     background: #55bcdf;
     background: #444;
-    /*box-shadow:0 78px 2px 2px rgba(0,0,0,.2) inset;*/
 }
 body .phone #content .page #scroller
 {
@@ -177,7 +150,7 @@ body .phone #content .page #screen-one #header
     top: 0;
     left: 0;
 
-    width: 100%;
+    min-width: 100%;
     height: 45px;
     padding: 0;
 
@@ -202,11 +175,16 @@ body .phone #content .page #screen-one #footer
 
 footer
 {
-    position: relative;
+    position: absolute;
     z-index: 9999; 
+    bottom: 0;
 
+    width: 100%;
+    height: 100px;
     margin: 0;
     padding: 0;
+
+    background: red;
 }
 footer nav ul
 {
