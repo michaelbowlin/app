@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset=utf-8 />
-  <title>  Road and Curb |  HTML5 APP </title>
-  <link rel="stylesheet" href="/assets/css/style.css" />
+    <!-- Meta, title, CSS, favicons, etc. -->
+    {% include header.html %}
+    <!-- Place anything custom after this. -->
 </head>
 <body>
  
@@ -22,12 +22,7 @@
       </ul>
     </nav>
  
-    <h2 class="content">Road and Curb</h2>
-
-<img src="/assets/img/road.jpg">
-
-<p>Bike lanes here are terribly thin.</p>
-
+    {{ content }}
  
     <footer>
       <p>@copy; 2014-15 | All Rights Reserved. </p>
