@@ -200,9 +200,9 @@ footer nav li
 
     list-style-type: none; 
 
-    background: #30333d;
-    -webkit-box-shadow: 0 0 2px 1px #f0ffd6 inset;
-            box-shadow: 0 0 2px 1px #f0ffd6 inset;
+    background: #fff;
+    -webkit-box-shadow: 0 0 0 1px #ddd inset;
+            box-shadow: 0 0 0 1px #ddd inset;
 }
 footer nav a
 {
