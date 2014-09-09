@@ -24,7 +24,7 @@ body {
     left:0px;
     background:#888;
     padding:0px;
-    box-shadow:2px 2px 2px 1px rgba(0,0,0,.3);
+    /*box-shadow:2px 2px 2px 1px rgba(0,0,0,.3);*/
     height:48px;
     width:100%;
     border-top:$color-trim 2px solid;
@@ -74,9 +74,8 @@ body {
           width:100%;
           position:absolute;
           z-index:1;
-          background:#ccc;
           background:$color-1;
-          background:#444;
+          background:#ada8a8;
            
            #scroller {
               position: absolute;
@@ -177,15 +176,16 @@ body {
         width:25%;
         float:left;
         background:#fff;
-        box-shadow: 0px 0px 0px 1px #ddd inset;;
+        box-shadow: 0 -1px 0 1px #ddd inset;
         list-style-type:none;
       }
 
       a {
         text-decoration:none;
       }
+
       .active {
-        background:#666;
+        background:#777;
       }
     }
   } 
@@ -386,6 +386,93 @@ body {
 
 
 
+/* 
+    Sample 1
+    SASS TEST 
+    nth function in lists
+    http://leveluptuts.com/tutorials/sass-tutorials/9-nth-function-lists
+*/
+
+ @each $p in (
+    one black,
+    two black + 20,
+    three black + 40,
+    four black + 60 
+) {
+    .#{nth($p,1)} { 
+      /*background: #{nth($p,2)};*/
+      border:#{nth($p,2)} solid 15px;
+    }
+ }
+/* 
+    Sample 2
+    Star Rating System
+    based on:http://codepen.io/michaelbowlin/pen/nrdBx
+*/
+
+.star-cb-group {
+  /* remove inline-block whitespace */
+  font-size: 0;
+  * {
+    font-size: 32px;
+  }
+  /* flip the order so we can use the + and ~ combinators */
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  & > [type*="radio"] {
+    display: none;
+    & + label {
+      /* only enough room for the star */
+      display: inline-block;
+      overflow: hidden;
+      text-indent: 9999px;
+      width: 1em;
+      height: 1.4em;
+      white-space: nowrap;
+      &:before {
+        display: inline-block;
+        text-indent: -9999px;
+        content: '\2606'; /* WHITE STAR */
+        color: #888;
+      }
+    }
+    &:checked ~ label:before,
+      & + label:hover ~ label:before,
+      & + label:hover:before {
+      content: '\2605'; /* BLACK STAR */
+      color: #e52;
+      text-shadow: 0 0 1px #333;
+    }
+  }
+  
+  /* the hidden clearer */
+  & > .star-cb-clear[type*="radio"] + label {
+    text-indent: -9999px;
+    width: .5em;
+    margin-left: -.5em;
+  }
+  & > .star-cb-clear[type*="radio"] + label:before {
+    width: .5em;
+    height: 1.4em;
+  }
+  
+  /* this is gross, I threw this in to override the starred
+     buttons when hovering. */
+  &:hover > [type*="radio"] + label:before {
+    content: '\2606'; /* WHITE STAR */
+    color: #888;
+    text-shadow: none;
+  }
+  &:hover > [type*="radio"] + label:hover ~ label:before,
+  &:hover > [type*="radio"] + label:hover:before {
+    content: '\2605'; /* BLACK STAR */
+    color: #e52;
+    text-shadow: 0 0 1px #333;
+  }
+}
+
+
+  
 
 
 

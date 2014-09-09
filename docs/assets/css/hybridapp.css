@@ -26,13 +26,12 @@ body .logomain
     left: 0;
 
     width: 100%;
+    /*box-shadow:2px 2px 2px 1px rgba(0,0,0,.3);*/
     height: 48px;
     padding: 0;
 
     border-top: #ccfe04 2px solid; 
     background: #888;
-    -webkit-box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .3);
-            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .3);
 }
 body .logomain h1
 {
@@ -85,9 +84,8 @@ body .phone #content .page
     width: 100%;
     height: 488px;
 
-    background: #ccc;
     background: #55bcdf;
-    background: #444;
+    background: #ada8a8;
 }
 body .phone #content .page #scroller
 {
@@ -192,8 +190,8 @@ footer nav li
     list-style-type: none; 
 
     background: #fff;
-    -webkit-box-shadow: 0 0 0 1px #ddd inset;
-            box-shadow: 0 0 0 1px #ddd inset;
+    -webkit-box-shadow: 0 -1px 0 1px #ddd inset;
+            box-shadow: 0 -1px 0 1px #ddd inset;
 }
 footer nav a
 {
@@ -201,7 +199,7 @@ footer nav a
 }
 footer nav .active
 {
-    background: #666;
+    background: #777;
 }
 
 .page.left100
@@ -397,4 +395,121 @@ footer nav .active
 .move-left-3
 {
     -webkit-transform: translateX(-960px);
+}
+
+/* 
+    Sample 1
+    SASS TEST 
+    nth function in lists
+    http://leveluptuts.com/tutorials/sass-tutorials/9-nth-function-lists
+*/
+.one
+{
+    /*background: black;*/
+    border: black solid 15px;
+}
+
+.two
+{
+    /*background: #141414;*/
+    border: #141414 solid 15px;
+}
+
+.three
+{
+    /*background: #282828;*/
+    border: #282828 solid 15px;
+}
+
+.four
+{
+    /*background: #3c3c3c;*/
+    border: #3c3c3c solid 15px;
+}
+
+/* 
+    Sample 2
+    Star Rating System
+    based on:http://codepen.io/michaelbowlin/pen/nrdBx
+*/
+.star-cb-group
+{
+    /* remove inline-block whitespace */
+    font-size: 0;
+    /* flip the order so we can use the + and ~ combinators */
+
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    /* the hidden clearer */
+    /* this is gross, I threw this in to override the starred
+     buttons when hovering. */
+}
+.star-cb-group *
+{
+    font-size: 32px;
+}
+.star-cb-group > [type*='radio']
+{
+    display: none;
+}
+.star-cb-group > [type*='radio'] + label
+{
+    /* only enough room for the star */
+    display: inline-block;
+    overflow: hidden;
+
+    width: 1em;
+    height: 1.4em;
+
+    white-space: nowrap; 
+    text-indent: 9999px;
+}
+.star-cb-group > [type*='radio'] + label:before
+{
+    display: inline-block;
+
+    content: '\2606';
+    text-indent: -9999px;
+    /* WHITE STAR */
+
+    color: #888;
+}
+.star-cb-group > [type*='radio']:checked ~ label:before,
+.star-cb-group > [type*='radio'] + label:hover ~ label:before,
+.star-cb-group > [type*='radio'] + label:hover:before
+{
+    content: '\2605';
+    /* BLACK STAR */
+
+    color: #e52;
+    text-shadow: 0 0 1px #333;
+}
+.star-cb-group > .star-cb-clear[type*='radio'] + label
+{
+    width: .5em;
+    margin-left: -.5em; 
+
+    text-indent: -9999px;
+}
+.star-cb-group > .star-cb-clear[type*='radio'] + label:before
+{
+    width: .5em;
+    height: 1.4em;
+}
+.star-cb-group:hover > [type*='radio'] + label:before
+{
+    content: '\2606';
+    /* WHITE STAR */
+
+    color: #888;
+    text-shadow: none;
+}
+.star-cb-group:hover > [type*='radio'] + label:hover ~ label:before,
+.star-cb-group:hover > [type*='radio'] + label:hover:before
+{
+    content: '\2605';
+    /* BLACK STAR */
+
+    color: #e52;
+    text-shadow: 0 0 1px #333;
 }
