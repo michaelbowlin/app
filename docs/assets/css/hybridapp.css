@@ -481,7 +481,7 @@ footer nav .active
     content: '\2605';
     /* BLACK STAR */
 
-    color: #e52;
+    color: gold;
     text-shadow: 0 0 1px #333;
 }
 .star-cb-group > .star-cb-clear[type*='radio'] + label
@@ -510,6 +510,144 @@ footer nav .active
     content: '\2605';
     /* BLACK STAR */
 
-    color: #e52;
+    color: gold;
+    text-shadow: 0 0 1px #333;
+}
+
+/*=============================== ARROW RATING */
+.star-ar-group
+{
+    /* remove inline-block whitespace */
+    font-size: 0;
+    /* flip the order so we can use the + and ~ combinators */
+
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    /* the hidden clearer */
+    /* this is gross, I threw this in to override the starred
+     buttons when hovering. */
+    /*
+&:hover > [type*="radio"] + label:hover ~ label:before,
+&:hover > [type*="radio"] + label:hover:before {
+  content: url('../img/ArrowV-rating-purple.png');
+} */
+}
+.star-ar-group *
+{
+    font-size: 32px;
+}
+.star-ar-group > [type*='radio']
+{
+    display: none;
+}
+.star-ar-group > [type*='radio'] + label
+{
+    /* only enough room for the star */
+    display: inline-block;
+    overflow: hidden;
+
+    width: 1em;
+    height: 1.4em;
+
+    white-space: nowrap; 
+    text-indent: 9999px;
+}
+.star-ar-group > [type*='radio'] + label:before
+{
+    display: inline-block;
+    /*content: '\2606';  WHITE STAR */
+
+    content: url('../img/ArrowV-rating.png'); 
+    text-indent: -9999px;
+}
+.star-ar-group > [type*='radio']:checked ~ label#blue:before,
+.star-ar-group > [type*='radio'] + label:hover ~ label#blue:before,
+.star-ar-group > [type*='radio'] + label:hover:before
+{
+    /* content: '\2605';BLACK STAR */
+    content: url('../img/ArrowV-rating-blue.png');
+
+    text-shadow: 0 0 1px #333;
+}
+.star-ar-group > [type*='radio']:checked ~ label#purple:before,
+.star-ar-group > [type*='radio'] + label:hover ~ label#purple:before,
+.star-ar-group > [type*='radio'] + label:hover:before
+{
+    /* content: '\2605';BLACK STAR */
+    content: url('../img/ArrowV-rating-purple.png');
+
+    text-shadow: 0 0 1px #333;
+}
+.star-ar-group > [type*='radio']:checked ~ label#green:before,
+.star-ar-group > [type*='radio'] + label:hover ~ label#green:before,
+.star-ar-group > [type*='radio'] + label:hover:before
+{
+    /* content: '\2605';BLACK STAR */
+    content: url('../img/ArrowV-rating-green.png');
+
+    text-shadow: 0 0 1px #333;
+}
+.star-ar-group > [type*='radio']:checked ~ label#yellow:before,
+.star-ar-group > [type*='radio'] + label:hover ~ label#yellow:before,
+.star-ar-group > [type*='radio'] + label:hover:before
+{
+    /* content: '\2605';BLACK STAR */
+    content: url('../img/ArrowV-rating-yellow.png');
+
+    text-shadow: 0 0 1px #333;
+}
+.star-ar-group > [type*='radio']:checked ~ label#red:before,
+.star-ar-group > [type*='radio'] + label:hover ~ label#red:before,
+.star-ar-group > [type*='radio'] + label:hover:before
+{
+    /* content: '\2605';BLACK STAR */
+    content: url('../img/ArrowV-rating-red.png');
+
+    text-shadow: 0 0 1px #333;
+}
+.star-ar-group > .star-cb-clear[type*='radio'] + label
+{
+    width: .5em;
+    margin-left: -.5em; 
+
+    text-indent: -9999px;
+}
+.star-ar-group > .star-cb-clear[type*='radio'] + label:before
+{
+    width: .5em;
+    height: 1.4em;
+}
+.star-ar-group:hover > [type*='radio'] + label:before
+{
+    content: url('../img/ArrowV-rating.png');
+}
+.star-ar-group:hover > [type='radio'] + label#blue:hover:before
+{
+    content: url('../img/ArrowV-rating-blue.png');
+
+    text-shadow: 0 0 1px #333;
+}
+.star-ar-group:hover > [type='radio'] + label#purple:hover:before
+{
+    content: url('../img/ArrowV-rating-purple.png');
+
+    text-shadow: 0 0 1px #333;
+}
+.star-ar-group:hover > [type='radio'] + label#green:hover:before
+{
+    content: url('../img/ArrowV-rating-green.png');
+
+    text-shadow: 0 0 1px #333;
+}
+.star-ar-group:hover > [type='radio'] + label#yellow:hover:before
+{
+    content: url('../img/ArrowV-rating-yellow.png');
+
+    text-shadow: 0 0 1px #333;
+}
+.star-ar-group:hover > [type='radio'] + label#red:hover:before
+{
+    content: url('../img/ArrowV-rating-red.png');
+
     text-shadow: 0 0 1px #333;
 }

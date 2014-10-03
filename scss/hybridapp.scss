@@ -440,7 +440,7 @@ body {
       & + label:hover ~ label:before,
       & + label:hover:before {
       content: '\2605'; /* BLACK STAR */
-      color: #e52;
+      color: gold;
       text-shadow: 0 0 1px #333;
     }
   }
@@ -466,9 +466,122 @@ body {
   &:hover > [type*="radio"] + label:hover ~ label:before,
   &:hover > [type*="radio"] + label:hover:before {
     content: '\2605'; /* BLACK STAR */
-    color: #e52;
+    color: gold;
     text-shadow: 0 0 1px #333;
   }
+}
+
+/*=============================== ARROW RATING */
+
+.star-ar-group {
+  /* remove inline-block whitespace */
+  font-size: 0;
+  * {
+    font-size: 32px;
+  }
+  /* flip the order so we can use the + and ~ combinators */
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  & > [type*="radio"] {
+    display: none;
+    & + label {
+      /* only enough room for the star */
+      display: inline-block;
+      overflow: hidden;
+      text-indent: 9999px;
+      width: 1em;
+      height: 1.4em;
+      white-space: nowrap;
+      &:before {
+        display: inline-block;
+        text-indent: -9999px;
+        /*content: '\2606';  WHITE STAR */
+        content: url('../img/ArrowV-rating.png');
+      }
+    }
+    
+    &:checked ~ label#blue:before,
+    & + label:hover ~ label#blue:before,
+    & + label:hover:before {
+       /* content: '\2605';BLACK STAR */
+      content: url('../img/ArrowV-rating-blue.png');
+      text-shadow: 0 0 1px #333;
+    }    
+    &:checked ~ label#purple:before,
+    & + label:hover ~ label#purple:before,
+    & + label:hover:before {
+       /* content: '\2605';BLACK STAR */
+      content: url('../img/ArrowV-rating-purple.png');
+      text-shadow: 0 0 1px #333;
+    }    
+    &:checked ~ label#green:before,
+    & + label:hover ~ label#green:before,
+    & + label:hover:before {
+       /* content: '\2605';BLACK STAR */
+      content: url('../img/ArrowV-rating-green.png');
+      text-shadow: 0 0 1px #333;
+    }    
+    &:checked ~ label#yellow:before,
+    & + label:hover ~ label#yellow:before,
+    & + label:hover:before {
+       /* content: '\2605';BLACK STAR */
+      content: url('../img/ArrowV-rating-yellow.png');
+      text-shadow: 0 0 1px #333;
+    }    
+    &:checked ~ label#red:before,
+    & + label:hover ~ label#red:before,
+    & + label:hover:before {
+       /* content: '\2605';BLACK STAR */
+      content: url('../img/ArrowV-rating-red.png');
+      text-shadow: 0 0 1px #333;
+    }
+  }
+  
+  /* the hidden clearer */
+  & > .star-cb-clear[type*="radio"] + label {
+    text-indent: -9999px;
+    width: .5em;
+    margin-left: -.5em;
+  }
+  & > .star-cb-clear[type*="radio"] + label:before {
+    width: .5em;
+    height: 1.4em;
+  }
+  
+  /* this is gross, I threw this in to override the starred
+     buttons when hovering. */
+  &:hover > [type*="radio"] + label:before {
+    content: url('../img/ArrowV-rating.png');
+  }/*
+  &:hover > [type*="radio"] + label:hover ~ label:before,
+  &:hover > [type*="radio"] + label:hover:before {
+    content: url('../img/ArrowV-rating-purple.png');
+  } */ 
+
+
+  &:hover > [type="radio"] + label#blue:hover:before {
+    content: url('../img/ArrowV-rating-blue.png');
+    text-shadow: 0 0 1px #333;
+  }  
+  &:hover > [type="radio"] + label#purple:hover:before {
+    content: url('../img/ArrowV-rating-purple.png');
+    text-shadow: 0 0 1px #333;
+  }  
+  &:hover > [type="radio"] + label#green:hover:before {
+    content: url('../img/ArrowV-rating-green.png');
+    text-shadow: 0 0 1px #333;
+  }  
+  &:hover > [type="radio"] + label#yellow:hover:before {
+    content: url('../img/ArrowV-rating-yellow.png');
+    text-shadow: 0 0 1px #333;
+  }  
+  &:hover > [type="radio"] + label#red:hover:before {
+    content: url('../img/ArrowV-rating-red.png');
+    text-shadow: 0 0 1px #333;
+  }  
+
+
+
 }
 
 
