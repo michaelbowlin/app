@@ -90,14 +90,49 @@
  
   </div>
 
+  
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
-	
-	$(document).ready(function(){
 
 
 
-	});
+$(document).ready(function(){
+
+	var myObject = {
+	  "row": 
+	  [
+	    {
+	      "label": "1",
+	      "state": "Colorado",
+	      "river": "South Plate"
+	    },
+	    {
+	      "label": "2",
+	      "state": "Montana",
+	      "river": "Bitterroot"
+	    }        
+	  ]
+	}
+
+	//console.log(myObject.row[1].state)
+
+	var myOb = myObject.row;
+
+    
+	for(var i = 0; i < myOb.length; i++){
+
+		var label = myOb[i].label;
+		var state = myOb[i].state;
+		var river = myOb[i].river;
+
+		console.log(label);
+		console.log(state);
+		console.log(river);
+
+	}
+
+
+});
 
 </script>
 </body>
