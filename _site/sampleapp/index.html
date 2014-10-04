@@ -61,22 +61,22 @@ $(document).ready(function(){
 	  "row": 
 	  [
 	    {
-	      "label": "1",
+	      "id": "1",
 	      "state": "North America",
 	      "river": "South Plate",
-	      "parentId" : "1"
+	      "parentid" : "300"
 	    },
 	    {
-	      "label": "2",
+	      "id": "2",
 	      "state": "Colorado",
 	      "river": "South Plate",
-	      "parentId" : ""
+	      "parentid" : "200"
 	    },
 	    {
-	      "label": "3",
+	      "id": "3",
 	      "state": "Montana",
 	      "river": "Bitterroot",
-	      "parentId" : ""
+	      "parentid" : "200"
 	    }        
 	  ]
 	}
@@ -90,33 +90,34 @@ var builddata = function(){
 
     // build hierarchical source
 	for(var i = 0; i < myOb.length; i++){
-		
 		var item = myOb[i];
 
-		var label = myOb[i].label;
-		var state = myOb[i].state;
-		var river = myOb[i].river;
-		var parentid = myOb[i].parentid;
+		var id = item["id"];
+		var state = item["state"];
+		var river = item["river"];
+		var parentid = item["parentid"];
 
-		console.log(label);
-		console.log(state);
-		console.log(river);
+		//console.log(id);
+		//console.log(state);
+		//console.log(river);
+		//console.log(parentid);
+		//console.log(state + parentid + " -- Node Id -- " + id + "<br/>");
 
 		// if parentid
 		if(items[parentid]) {
-			var item = { parentid : parentid, label : label, state : state, river : river };
+			var item = { parentid : parentid, id : id, state : state, river : river };
 			//console.log("yoooo" + item)
 
 			if (!items[parentid].items) {
 				items[parenid].items = [];
 			}
-			items[parentid].items[items[parentid].items.length]
-			items[label] = item;
+			items[parentid].items[items[parentid].items.length] = item;
+			items[id] = item;
 
 		} else {
 
-			items[label] = {  parentid : parentid, label : label, state : state, river : river  };
-			source[label] = items[label];
+			items[id] = {  parentid : parentid, id : id, state : state, river : river  };
+			source[id] = items[id];
 
 		}
 	}
@@ -126,9 +127,30 @@ var builddata = function(){
 var source = builddata();
 console.log(builddata());
 
+var buildUL = function(parent, items){
+	$.each(items, function(){
+
+		if(this.id) {
+
+            // create LI element and append it to the parent element.
+			var li = $("<li>" + this.state + "</li>");
+			li.appendTo(parent);
+            // if there are sub items, call the buildUL function.
+            if (this.items && this.items.length > 0) {
+            	var ul = $("<ul></ul>");
+            	ul.appendTo(li);
+            	buildUL(ul, this.items);
+            }
+
+		}
+
+	});
+}
 
 
-
+var ul = $("<ul></ul>");
+ul.appendTo(".js-tempjson");
+buildUL(ul,source);
 
 
 
