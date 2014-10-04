@@ -57,100 +57,173 @@
 
 $(document).ready(function(){
 
-	var myObject = {
-	  "row": 
-	  [
-	    {
-	      "id": "1",
-	      "state": "North America",
-	      "river": "South Plate",
-	      "parentid" : "300"
-	    },
-	    {
-	      "id": "2",
-	      "state": "Colorado",
-	      "river": "South Plate",
-	      "parentid" : "200"
-	    },
-	    {
-	      "id": "3",
-	      "state": "Montana",
-	      "river": "Bitterroot",
-	      "parentid" : "200"
-	    }        
-	  ]
-	}
 
-	//console.log(myObject.row[1].state)
-var builddata = function(){
 
-	var myOb = myObject.row;
-	var source = [];
-	var items = [];
 
-    // build hierarchical source
-	for(var i = 0; i < myOb.length; i++){
-		var item = myOb[i];
 
-		var id = item["id"];
-		var state = item["state"];
-		var river = item["river"];
-		var parentid = item["parentid"];
 
-		//console.log(id);
-		//console.log(state);
-		//console.log(river);
-		//console.log(parentid);
-		//console.log(state + parentid + " -- Node Id -- " + id + "<br/>");
 
-		// if parentid
-		if(items[parentid]) {
-			var item = { parentid : parentid, id : id, state : state, river : river };
-			//console.log("yoooo" + item)
 
-			if (!items[parentid].items) {
-				items[parenid].items = [];
-			}
-			items[parentid].items[items[parentid].items.length] = item;
-			items[id] = item;
+var myObject = 
+  {
+    "row": [
+        {
+            "STATUS": 1,
+            "LEVEL": 1,
+            "NAV_TITLE": "headNav",
+            "DISPLAY_ORDER": 1,
+            "VALUE": 342,
+            "LINK": "#",
+            "PARENT_ID": ""
+        },
+        {
+            "STATUS": -1,
+            "LEVEL": 2,
+            "NAV_TITLE": "Grow my business",
+            "DISPLAY_ORDER": 10,
+            "VALUE": 227,
+            "LINK": "#",
+            "PARENT_ID": 342
+        },
+        {
+            "STATUS": -1,
+            "LEVEL": 3,
+            "NAV_TITLE": "Solutions",
+            "DISPLAY_ORDER": 30,
+            "VALUE": 162,
+            "LINK": "#",
+            "PARENT_ID": 227
+        },
+        {
+            "STATUS": 0,
+            "LEVEL": 4,
+            "NAV_TITLE": "Empower: Next Generation Analytics",
+            "DISPLAY_ORDER": 1,
+            "VALUE": 291,
+            "LINK": "#",
+            "PARENT_ID": 162
+        },
+        {
+            "STATUS": 0,
+            "LEVEL": 4,
+            "NAV_TITLE": "Empower: Value Added Services",
+            "DISPLAY_ORDER": 2,
+            "VALUE": 295,
+            "LINK": "#",
+            "PARENT_ID": 162
+        },
+        {
+            "STATUS": -1,
+            "LEVEL": 4,
+            "NAV_TITLE": "Empower: Data Center Convergence",
+            "DISPLAY_ORDER": 3,
+            "VALUE": 297,
+            "LINK": "#",
+            "PARENT_ID": 162
+        },
+        {
+            "STATUS": 0,
+            "LEVEL": 5,
+            "NAV_TITLE": "EMC - VSPEX",
+            "DISPLAY_ORDER": 1,
+            "VALUE": 306,
+            "LINK": "#",
+            "PARENT_ID": 297
+        },
+        {
+            "STATUS": 0,
+            "LEVEL": 4,
+            "NAV_TITLE": "Virtualization",
+            "DISPLAY_ORDER": 4,
+            "VALUE": 163,
+            "LINK": "#",
+            "PARENT_ID": 162
+        },
+        {
+            "STATUS": 0,
+            "LEVEL": 4,
+            "NAV_TITLE": "Security",
+            "DISPLAY_ORDER": 4,
+            "VALUE": 169,
+            "LINK": "#",
+            "PARENT_ID": 162
+        },
 
-		} else {
-
-			items[id] = {  parentid : parentid, id : id, state : state, river : river  };
-			source[id] = items[id];
-
-		}
-	}
-	return source;
+    ]
 }
 
+
+//==============
+
+
+/*for(var i=0; i < myObject.row.length; i++){
+  item = "<ul>";
+  item += "<li>";
+  item += "<a>";
+  item += myObject.row[i].NAV_TITLE;
+  item += "</li>";
+  item += "</ul>";
+  
+  $(".menu").append(item);
+}*/
+
+var builddata = function () {
+    var source = [];
+    var items = [];
+    // build hierarchical source.
+    for (i = 0; i < myObject.row.length; i++) {
+        var item = myObject.row[i];
+      
+        var label = item["NAV_TITLE"];
+        var parentid = item["PARENT_ID"];
+        var id = item["VALUE"];
+      
+      // console.log(label+parentid+"Node Id"+id+"<br/>");
+        if (items[parentid]) {
+            var item = { parentid: parentid, label: label, item: item };
+         // console.log(item);
+            if (!items[parentid].items) {
+                items[parentid].items = [];
+            }
+            items[parentid].items[items[parentid].items.length] = item;
+            items[id] = item;
+        }
+        else {
+            items[id] = { parentid: parentid, label: label, item: item };
+            source[id] = items[id];
+        }
+    }
+    return source;
+}
 var source = builddata();
-console.log(builddata());
 
-var buildUL = function(parent, items){
-	$.each(items, function(){
-
-		if(this.id) {
-
+var buildUL = function (parent, items) {
+    $.each(items, function () {
+        if (this.label) {
             // create LI element and append it to the parent element.
-			var li = $("<li>" + this.state + "</li>");
-			li.appendTo(parent);
+            var li = $("<li>" + this.label + "</li>");
+            li.appendTo(parent);
             // if there are sub items, call the buildUL function.
             if (this.items && this.items.length > 0) {
-            	var ul = $("<ul></ul>");
-            	ul.appendTo(li);
-            	buildUL(ul, this.items);
+                var ul = $("<ul></ul>");
+                ul.appendTo(li);
+                buildUL(ul, this.items);
             }
-
-		}
-
-	});
+        }
+    });
 }
-
-
 var ul = $("<ul></ul>");
 ul.appendTo(".js-tempjson");
-buildUL(ul,source);
+buildUL(ul, source);
+
+
+
+
+
+
+
+
+
 
 
 

@@ -12,7 +12,14 @@ body {
 }
 ul {
   margin: 0;
-  padding: 0;
+  padding: 0px;
+}
+li {
+
+}
+.js-tempjson ul,
+.js-tempjson li {
+    padding:10px;
 }
 a {
   color: #ccc;
