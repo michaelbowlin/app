@@ -109,86 +109,96 @@ var myObject =
   {
     "row": [
         {
-            "STATUS": 1,
-            "LEVEL": 1,
-            "NAV_TITLE": "headNav",
-            "DISPLAY_ORDER": 1,
-            "VALUE": 342,
+            "ID": 1,
+            "TITLE": "headNav",
             "LINK": "#",
+            "CHILD_ID": 500,
             "PARENT_ID": ""
         },
         {
             "STATUS": -1,
-            "LEVEL": 2,
-            "NAV_TITLE": "Grow my business",
-            "DISPLAY_ORDER": 10,
-            "VALUE": 227,
+            "TITLE": "Alabama",
             "LINK": "#",
-            "PARENT_ID": 342
+            "CHILD_ID": 400,
+            "PARENT_ID": 500
         },
         {
             "STATUS": -1,
-            "LEVEL": 3,
-            "NAV_TITLE": "Solutions",
-            "DISPLAY_ORDER": 30,
-            "VALUE": 162,
+            "TITLE": "Alaska",
             "LINK": "#",
-            "PARENT_ID": 227
-        },
-        {
-            "STATUS": 0,
-            "LEVEL": 4,
-            "NAV_TITLE": "Empower: Next Generation Analytics",
-            "DISPLAY_ORDER": 1,
-            "VALUE": 291,
-            "LINK": "#",
-            "PARENT_ID": 162
-        },
-        {
-            "STATUS": 0,
-            "LEVEL": 4,
-            "NAV_TITLE": "Empower: Value Added Services",
-            "DISPLAY_ORDER": 2,
-            "VALUE": 295,
-            "LINK": "#",
-            "PARENT_ID": 162
+            "CHILD_ID": 400,
+            "PARENT_ID": 500
         },
         {
             "STATUS": -1,
-            "LEVEL": 4,
-            "NAV_TITLE": "Empower: Data Center Convergence",
-            "DISPLAY_ORDER": 3,
-            "VALUE": 297,
+            "TITLE": "Arizona",
             "LINK": "#",
-            "PARENT_ID": 162
+            "CHILD_ID": 400,
+            "PARENT_ID": 500
+        },
+        {
+            "STATUS": -1,
+            "TITLE": "Arkansas",
+            "LINK": "#",
+            "CHILD_ID": 400,
+            "PARENT_ID": 500
+        },
+        {
+            "STATUS": -1,
+            "TITLE": "California",
+            "LINK": "#",
+            "CHILD_ID": 400,
+            "PARENT_ID": 500
+        },
+        {
+            "STATUS": -1,
+            "TITLE": "Colorado",
+            "LINK": "#",
+            "CHILD_ID": 400,
+            "PARENT_ID": 500
+        },
+        {
+            "STATUS": -1,
+            "TITLE": "Connecticut",
+            "LINK": "#",
+            "CHILD_ID": 400,
+            "PARENT_ID": 500
+        },
+        {
+            "STATUS": -1,
+            "TITLE": "Delaware",
+            "LINK": "#",
+            "CHILD_ID": 400,
+            "PARENT_ID": 500
+        },
+        {
+            "STATUS": -1,
+            "TITLE": "Florida",
+            "LINK": "#",
+            "CHILD_ID": 400,
+            "PARENT_ID": 500
+        },
+        {
+            "STATUS": -1,
+            "TITLE": "South Platte",
+            "LINK": "#",
+            "CHILD_ID": 300,
+            "PARENT_ID": 400
         },
         {
             "STATUS": 0,
-            "LEVEL": 5,
-            "NAV_TITLE": "EMC - VSPEX",
-            "DISPLAY_ORDER": 1,
-            "VALUE": 306,
+            "TITLE": "Upper Platte",
             "LINK": "#",
-            "PARENT_ID": 297
+            "CHILD_ID": 300,
+            "PARENT_ID": 400
         },
         {
             "STATUS": 0,
-            "LEVEL": 4,
-            "NAV_TITLE": "Virtualization",
-            "DISPLAY_ORDER": 4,
-            "VALUE": 163,
+            "TITLE": "Mayfly",
             "LINK": "#",
-            "PARENT_ID": 162
-        },
-        {
-            "STATUS": 0,
-            "LEVEL": 4,
-            "NAV_TITLE": "Security",
-            "DISPLAY_ORDER": 4,
-            "VALUE": 169,
-            "LINK": "#",
-            "PARENT_ID": 162
-        },
+            "CHILD_ID": 200,
+            "PARENT_ID": 300
+        }
 
     ]
 }
@@ -201,7 +211,7 @@ var myObject =
   item = "<ul>";
   item += "<li>";
   item += "<a>";
-  item += myObject.row[i].NAV_TITLE;
+  item += myObject.row[i].TITLE;
   item += "</li>";
   item += "</ul>";
   
@@ -215,9 +225,9 @@ var builddata = function () {
     for (i = 0; i < myObject.row.length; i++) {
         var item = myObject.row[i];
       
-        var label = item["NAV_TITLE"];
+        var label = item["TITLE"];
         var parentid = item["PARENT_ID"];
-        var id = item["VALUE"];
+        var id = item["CHILD_ID"];
       
       // console.log(label+parentid+"Node Id"+id+"<br/>");
         if (items[parentid]) {
@@ -246,7 +256,7 @@ var buildUL = function (parent, items) {
             li.appendTo(parent);
             // if there are sub items, call the buildUL function.
             if (this.items && this.items.length > 0) {
-                var ul = $("<ul></ul>");
+                var ul = $("<ul class=state-"+ this.label + "></ul>");
                 ul.appendTo(li);
                 buildUL(ul, this.items);
             }
