@@ -85,7 +85,18 @@ footer {
   text-align: center;
 }
 
-ul[class^="state-"]{
+
+/* JSON List */
+.mainlist {
+  border: blue solid;
+  position: relative;
+  width: 300px;
+  overflow: hidden;
+  height: 200px;
+  overflow-y: auto;
+}
+
+ul[class^="rivers-"]{
   border:red solid;
   width:100px;
   position:absolute;

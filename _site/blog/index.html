@@ -108,97 +108,128 @@ $(document).ready(function(){
 var myObject = 
   {
     "row": [
-        {
-            "ID": 1,
-            "TITLE": "headNav",
-            "LINK": "#",
-            "CHILD_ID": 500,
-            "PARENT_ID": ""
-        },
+        // {
+        //     "TITLE": "master",
+        //     "LINK": "#",
+        //     "ID": 9999,
+        //     "PARENT_ID": ""
+        // },
         {
             "STATUS": -1,
             "TITLE": "Alabama",
             "LINK": "#",
-            "CHILD_ID": 400,
-            "PARENT_ID": 500
+            "ID": 100,
+            "PARENT_ID": 9999
         },
+	        {
+	            "STATUS": -1,
+	            "TITLE": "Hurricane Creek",
+	            "LINK": "#",
+	            "ID": 101,
+	            "PARENT_ID": 100
+	        },
+	        {
+	            "STATUS": -1,
+	            "TITLE": "Mississippi River",
+	            "LINK": "#",
+	            "ID": 102,
+	            "PARENT_ID": 100
+	        },
+	        {
+	            "STATUS": -1,
+	            "TITLE": "Red River",
+	            "LINK": "#",
+	            "ID": 103,
+	            "PARENT_ID": 100
+	        },
+
         {
             "STATUS": -1,
             "TITLE": "Alaska",
             "LINK": "#",
-            "CHILD_ID": 400,
-            "PARENT_ID": 500
+            "ID": 200,
+            "PARENT_ID": 9999
         },
         {
             "STATUS": -1,
             "TITLE": "Arizona",
             "LINK": "#",
-            "CHILD_ID": 400,
-            "PARENT_ID": 500
+            "ID": 300,
+            "PARENT_ID": 9999
         },
         {
             "STATUS": -1,
             "TITLE": "Arkansas",
             "LINK": "#",
-            "CHILD_ID": 400,
-            "PARENT_ID": 500
+            "ID": 400,
+            "PARENT_ID": 9999
         },
         {
             "STATUS": -1,
             "TITLE": "California",
             "LINK": "#",
-            "CHILD_ID": 400,
-            "PARENT_ID": 500
+            "ID": 500,
+            "PARENT_ID": 9999
         },
+
+
+
+
         {
             "STATUS": -1,
             "TITLE": "Colorado",
             "LINK": "#",
-            "CHILD_ID": 400,
-            "PARENT_ID": 500
+            "ID": 600,
+            "PARENT_ID": 9999
         },
+	        {
+	            "STATUS": -1,
+	            "TITLE": "South Platte",
+	            "LINK": "#",
+	            "ID": 601,
+	            "PARENT_ID": 600
+	        },
+	        {
+	            "STATUS": 0,
+	            "TITLE": "Upper Platte",
+	            "LINK": "#",
+	            "ID": 602,
+	            "PARENT_ID": 600
+	        },
+		        {
+		            "STATUS": 0,
+		            "TITLE": "Mayfly",
+		            "LINK": "#",
+		            "ID": 6021,
+		            "PARENT_ID": 602
+		        },  
+
+
+
+
+
         {
             "STATUS": -1,
             "TITLE": "Connecticut",
             "LINK": "#",
-            "CHILD_ID": 400,
-            "PARENT_ID": 500
+            "ID": 700,
+            "PARENT_ID": 9999
         },
         {
             "STATUS": -1,
             "TITLE": "Delaware",
             "LINK": "#",
-            "CHILD_ID": 400,
-            "PARENT_ID": 500
+            "ID": 800,
+            "PARENT_ID": 9999
         },
         {
             "STATUS": -1,
             "TITLE": "Florida",
             "LINK": "#",
-            "CHILD_ID": 400,
-            "PARENT_ID": 500
+            "ID": 900,
+            "PARENT_ID": 9999
         },
-        {
-            "STATUS": -1,
-            "TITLE": "South Platte",
-            "LINK": "#",
-            "CHILD_ID": 300,
-            "PARENT_ID": 400
-        },
-        {
-            "STATUS": 0,
-            "TITLE": "Upper Platte",
-            "LINK": "#",
-            "CHILD_ID": 300,
-            "PARENT_ID": 400
-        },
-        {
-            "STATUS": 0,
-            "TITLE": "Mayfly",
-            "LINK": "#",
-            "CHILD_ID": 200,
-            "PARENT_ID": 300
-        }
+
 
     ]
 }
@@ -227,7 +258,7 @@ var builddata = function () {
       
         var label = item["TITLE"];
         var parentid = item["PARENT_ID"];
-        var id = item["CHILD_ID"];
+        var id = item["ID"];
       
       // console.log(label+parentid+"Node Id"+id+"<br/>");
         if (items[parentid]) {
@@ -238,32 +269,53 @@ var builddata = function () {
             }
             items[parentid].items[items[parentid].items.length] = item;
             items[id] = item;
-        }
-        else {
+            //console.log(items)
+        } else {
             items[id] = { parentid: parentid, label: label, item: item };
             source[id] = items[id];
+            //console.log(items);
         }
+
     }
     return source;
 }
 var source = builddata();
 
 var buildUL = function (parent, items) {
+
+
     $.each(items, function () {
+
+
+	//console.log("this is the parent - " + this.parent)
+	//console.log("this is the items - " + this.items)
+
         if (this.label) {
             // create LI element and append it to the parent element.
-            var li = $("<li>" + this.label + "</li>");
+            //console.log("this is the entire list - " + this.label)
+
+            // stating to seperate the lists
+            if (this.parentid !== 9999) {
+            	console.log(this.label)
+            }
+
+            var li = $("<li class=\"hello\">" + this.label + "</li>");
             li.appendTo(parent);
+
+            //console.log("here is the parent" + parent)
+            
             // if there are sub items, call the buildUL function.
             if (this.items && this.items.length > 0) {
-                var ul = $("<ul class=state-"+ this.label + "></ul>");
+
+            	//console.log(this.items)
+                var ul = $("<ul class=rivers-"+ this.label + "></ul>");
                 ul.appendTo(li);
                 buildUL(ul, this.items);
             }
         }
     });
 }
-var ul = $("<ul></ul>");
+var ul = $("<ul class=\"mainlist\"></ul>");
 ul.appendTo(".js-tempjson");
 buildUL(ul, source);
 
